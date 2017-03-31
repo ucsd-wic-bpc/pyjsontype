@@ -1,5 +1,7 @@
 from jsontypes import JSONTypes, JSONContainer
+
 import json
+import sys
 
 
 def nonlist_to_json_type(nonlist_type):
@@ -7,8 +9,9 @@ def nonlist_to_json_type(nonlist_type):
     Converts the given type (assuming its not a JSON list) into a JSONType
     instance
     """
-    if isinstance(nonlist_type, unicode):
-        nonlist_type = str(nonlist_type)
+    if sys.version_info.major < 3:
+        if isinstance(nonlist_type, unicode):
+            nonlist_type = str(nonlist_type)
 
     if isinstance(nonlist_type, str) and len(nonlist_type) == 1:
         return JSONTypes.CHAR
@@ -53,7 +56,7 @@ def get_type(jsonstr):
     """
     try:
         parsed_jsonstr = json.loads(jsonstr)
-    except ValueError:
+    except Exception:
         parsed_jsonstr = jsonstr
 
     if isinstance(parsed_jsonstr, list):

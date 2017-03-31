@@ -6,9 +6,6 @@ class JSONType(object):
         JSONType.types[description] = self
 
     def __eq__(self, other):
-        if not isinstance(other, JSONType):
-            return False
-
         return self.description == other.description
 
     def __ne__(self, other):
