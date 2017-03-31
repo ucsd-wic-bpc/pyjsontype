@@ -1,4 +1,4 @@
-from jsontypes import JSONTypes, JSONContainer
+from .jsontypes import JSONTypes, JSONContainer
 
 import json
 import sys
